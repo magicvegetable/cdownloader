@@ -1,20 +1,8 @@
-FROM fedora:latest
+FROM registry.gitlab.gnome.org/gnome/gnome-control-center/fedora/40:2024-04-16.0-40
 
 WORKDIR /app
 
-RUN dnf install -y meson pkgconf-pkg-config
-
-RUN dnf install -y gettext desktop-file-utils appstream
-
-RUN dnf install -y glib2 glib2-devel
-
-RUN dnf install -y gtk4 gtk4-devel libadwaita libadwaita-devel
-
-RUN dnf install -y dbus dbus-x11
-
-# RUN dnf install -y xorg-x11-xauth xhost
-
-RUN dnf install -y gcc
+RUN dnf install -y yt-dlp
 
 RUN dnf clean all
 

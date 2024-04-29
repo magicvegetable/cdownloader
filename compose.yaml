@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  my_service:
+    image: cdownloader
+    environment:
+      - DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+      - DISPLAY=:0
+      - HOME=${HOME}
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - /run/user/1000/bus:/run/user/1000/bus
+      - /run/user/1000/at-spi:/run/user/1000/at-spi
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${HOME}:${HOME}
+    user: "1000:1000"
+    devices:
+      - /dev/kfd:/dev/kfd
+      - /dev/dri/:/dev/dri/
