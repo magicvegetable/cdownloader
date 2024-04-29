@@ -1,0 +1,6 @@
+data/yt.vid.downloader.desktop.in
+data/yt.vid.downloader.metainfo.xml.in
+data/yt.vid.downloader.gschema.xml
+src/main.c
+src/cdownloader-window.c
+src/cdownloader-window.ui

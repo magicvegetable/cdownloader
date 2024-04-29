@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="cdownloader">
+	<schema id="yt.vid.downloader" path="/yt/vid/downloader/">
+	  <key name="test" type="s">
+	    <default>'schema test!'</default>
+	  </key>
+	  <key name="save-location" type="s">
+      <default>'~/Videos'</default>
+	  </key>
+	</schema>
+</schemalist>

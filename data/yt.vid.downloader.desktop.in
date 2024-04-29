@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=cdownloader
+Exec=cdownloader
+Icon=yt.vid.downloader
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

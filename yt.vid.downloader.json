@@ -1,0 +1,56 @@
+{
+    "id" : "yt.vid.downloader",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "master",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "cdownloader",
+    "finish-args" : [
+        "--share=network",
+        "--share=ipc",
+        "--socket=fallback-x11",
+        "--device=dri",
+        "--socket=wayland",
+        "--filesystem=host"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "/man",
+        "/share/doc",
+        "/share/gtk-doc",
+        "/share/man",
+        "/share/pkgconfig",
+        "*.la",
+        "*.a"
+    ],
+    "modules" : [
+        {
+            "name" : "yt-dlp",
+            "buildsystem" : "simple",
+            "build-commands": [
+                "IFS=':' read -ra file_directories <<< '/app/bin:/usr/local/bin:/usr/bin' && for dir in \"${file_directories[@]}\"; do [[ \":$PATH:\" == *\":$dir:\"* ]] && echo \"$dir\" > tmpBinFile && break; done",
+                "mkdir -p $(cat tmpBinFile)",
+                "chmod +x $(ls)",
+                "mv yt-dlp_linux \"$(cat tmpBinFile)/yt-dlp\""
+            ],
+            "sources" : [
+                {
+                    "type" : "file",
+                    "url" : "https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp_linux",
+                    "sha512": "9ee36cede6e4944597fe64abf1888ce099156bdd992638490ad9b12f7db0d0c5aa1153e7ab2cdf92415f47855c979cc7e68419b20dbe5f566f47aaa4696a3601"
+                }
+            ]
+        },
+        {
+            "name" : "cdownloader",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [
+                {
+                    "type" : "dir",
+                    "path" : "."
+                }
+            ]
+        }
+    ]
+}
