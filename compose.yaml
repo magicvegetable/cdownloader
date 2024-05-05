@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   main:
-    image: cdownloader:fedora-40
+    image: cdownloader:gccenter
     environment:
       - DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
       - DISPLAY=:0
