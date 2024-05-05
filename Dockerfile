@@ -1,10 +1,22 @@
-FROM registry.gitlab.gnome.org/gnome/gnome-control-center/fedora/40:2024-04-16.0-40
+FROM alpine:3.19.1
 
 WORKDIR /app
 
-RUN dnf install -y yt-dlp
+RUN apk add meson pkgconf
 
-RUN dnf clean all
+RUN apk add gettext desktop-file-utils appstream
+
+RUN apk add glib glib-dev
+
+RUN apk add gtk4.0 gtk4.0-dev libadwaita libadwaita-dev
+
+RUN apk add dbus dbus-x11
+
+RUN apk add build-base
+
+RUN apk add yt-dlp
+
+RUN apk add adwaita-icon-theme font-cantarell
 
 COPY . /app
 
@@ -16,5 +28,6 @@ RUN meson compile -C build
 
 RUN meson install -C build
 
-CMD ["cdownloader"]
+RUN rm -rf /app
 
+CMD ["cdownloader"]

@@ -3,3 +3,5 @@ fbuild/
 .flatpak-builder/
 .cache/
 compile_commands.json
+measure.sh
+custom.cast
