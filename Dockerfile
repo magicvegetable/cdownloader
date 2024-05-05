@@ -1,22 +1,22 @@
-FROM alpine:3.19.1
+FROM fedora:40
 
 WORKDIR /app
 
-RUN apk add meson pkgconf
+RUN dnf install -y meson pkgconf-pkg-config
 
-RUN apk add gettext desktop-file-utils appstream
+RUN dnf install -y gettext desktop-file-utils appstream
 
-RUN apk add glib glib-dev
+RUN dnf install -y glib2 glib2-devel
 
-RUN apk add gtk4.0 gtk4.0-dev libadwaita libadwaita-dev
+RUN dnf install -y gtk4 gtk4-devel libadwaita libadwaita-devel
 
-RUN apk add dbus dbus-x11
+RUN dnf install -y dbus dbus-x11
 
-RUN apk add build-base
+RUN dnf install -y gcc
 
-RUN apk add yt-dlp
+RUN dnf install -y yt-dlp
 
-RUN apk add adwaita-icon-theme font-cantarell
+RUN dnf clean all
 
 COPY . /app
 
